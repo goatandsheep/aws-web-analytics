@@ -1,15 +1,20 @@
 import Auth from '@aws-amplify/auth'
 import Analytics from '@aws-amplify/analytics'
 
+const el = document.querySelector('#aws-web-analytics')
 
+const idPool = el.getAttribute('data-id-pool')
+const pinpoint = el.getAttribute('data-pinpoint-id')
 
-var utmSource = 'utm_source'
-var utmMedium = 'utm_medium'
-var utmCampaign = 'utm_campaign'
-var utmTerm = 'utm_term' // running+shoes
-var utmContent = 'utm_content'
+var utm_source = 'utm_source'
+var utm_medium = 'utm_medium'
+var utm_campaign = 'utm_campaign'
+var utm_term = 'utm_term' // running+shoes
+var utm_content = 'utm_content'
 
 var referer = document.referrer;
+
+
 
 Auth.currentCredentials().then(creds => {
 
@@ -20,20 +25,20 @@ Auth.currentCredentials().then(creds => {
         eventName: 'pageView',
         // OPTIONAL, the attributes of the event, you can either pass an object or a function 
         // which allows you to define dynamic attributes
-        attributes: {
-            attr: 'attr'
+        attributes: () => {
+
+            let queryString = window.location.search.slice(1,)
+            let queryStrings = queryString.split('&')
+
+            let query = {}
+
+            queryStrings.forEach(val => {
+                const entry = val.split('=')
+                query[entry[0]] = entry[1]
+            })
+
+            return query
         },
-        // when using function
-        // attributes: () => {
-        //    const attr = somewhere();
-        //    return {
-        //        myAttr: attr
-        //    }
-        // },
-        // OPTIONAL, by default is 'multiPageApp'
-        // you need to change it to 'SPA' if your app is a single-page app like React
-        type: 'multiPageApp',
-        // OPTIONAL, the service provider, by default is the AWS Pinpoint
         provider: 'AWSPinpoint',
         // OPTIONAL, to get the current page url
         getUrl: () => {
