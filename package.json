@@ -1,0 +1,23 @@
+{
+  "name": "aws-web-analytics",
+  "version": "1.0.0",
+  "description": "Inexpensive alternative to Google Analytics on AWS",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goatandsheep/aws-web-analytics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goatandsheep/aws-web-analytics/issues"
+  },
+  "homepage": "https://github.com/goatandsheep/aws-web-analytics#readme",
+  "dependencies": {
+    "@aws-amplify/analytics": "^2.2.2",
+    "@aws-amplify/auth": "^2.1.3"
+  }
+}
