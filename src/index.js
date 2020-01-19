@@ -1,77 +1,94 @@
 import Auth from '@aws-amplify/auth'
 import Analytics from '@aws-amplify/analytics'
+import AmplifyConfig from './AmplifyConfig'
 
-const el = document.querySelector('#aws-web-analytics')
+(function () {
 
-const idPool = el.getAttribute('data-id-pool')
-const pinpoint = el.getAttribute('data-pinpoint-id')
+    function main() {
 
-var utm_source = 'utm_source'
-var utm_medium = 'utm_medium'
-var utm_campaign = 'utm_campaign'
-var utm_term = 'utm_term' // running+shoes
-var utm_content = 'utm_content'
+        const el = document.querySelector('#aws-web-analytics')
 
-var referer = document.referrer;
+        const idPool = el.getAttribute('data-id-pool')
+        const pinpoint = el.getAttribute('data-pinpoint-id')
+
+        const pageType = document.location.hash ? 'SPA' : 'multiPageApp'
+
+        window.LOG_LEVEL='DEBUG'
 
 
+        var utm_source = 'utm_source'
+        var utm_medium = 'utm_medium'
+        var utm_campaign = 'utm_campaign'
+        var utm_term = 'utm_term' // running+shoes
+        var utm_content = 'utm_content'
 
-Auth.currentCredentials().then(creds => {
+        var referer = document.referrer;
 
-    Analytics.autoTrack('pageView', {
-        // REQUIRED, turn on/off the auto tracking
-        enable: true,
-        // OPTIONAL, the event name, by default is 'pageView'
-        eventName: 'pageView',
-        // OPTIONAL, the attributes of the event, you can either pass an object or a function 
-        // which allows you to define dynamic attributes
-        attributes: () => {
+        new AmplifyConfig(pinpoint, idPool)
 
-            let queryString = window.location.search.slice(1,)
-            let queryStrings = queryString.split('&')
+        Auth.currentCredentials().then(creds => {
 
-            let query = {}
+            Analytics.autoTrack('pageView', {
+                // REQUIRED, turn on/off the auto tracking
+                enable: true,
+                // OPTIONAL, the event name, by default is 'pageView'
+                eventName: 'pageView',
+                // OPTIONAL, the attributes of the event, you can either pass an object or a function 
+                // which allows you to define dynamic attributes
+                attributes: () => {
 
-            queryStrings.forEach(val => {
-                const entry = val.split('=')
-                query[entry[0]] = entry[1]
-            })
+                    let queryString = window.location.search.slice(1)
+                    let queryStrings = queryString.split('&')
 
-            return query
-        },
-        provider: 'AWSPinpoint',
-        // OPTIONAL, to get the current page url
-        getUrl: () => {
-            // the default function
-            return window.location.origin + window.location.pathname;
-        }
-    });
-    
-    // TODO: other types of tracking
-    Analytics.autoTrack('event', {
-        // REQUIRED, turn on/off the auto tracking
-        enable: true,
-        // OPTIONAL, events you want to track, by default is 'click'
-        events: ['click'],
-        // OPTIONAL, the prefix of the selectors, by default is 'data-amplify-analytics-'
-        // in order to avoid collision with the user agent, according to https://www.w3schools.com/tags/att_global_data.asp
-        // always put 'data' as the first prefix
-        selectorPrefix: 'data-amplify-analytics-',
-        // OPTIONAL, the service provider, by default is the AWS Pinpoint
-        provider: 'AWSPinpoint',
-        // OPTIONAL, the default attributes of the event, you can either pass an object or a function 
-        // which allows you to define dynamic attributes
-        attributes: {
-            attr: 'attr'
-        }
-        // when using function
-        // attributes: () => {
-        //    const attr = somewhere();
-        //    return {
-        //        myAttr: attr
-        //    }
-        // }
-    });
-    
-})
+                    let query = {
+                        referer: referer
+                    }
 
+                    queryStrings.forEach(val => {
+                        const entry = val.split('=')
+                        query[entry[0]] = entry[1]
+                    })
+
+                    return query
+                },
+                type: pageType,
+                provider: 'AWSPinpoint',
+                // OPTIONAL, to get the current page url
+                getUrl: () => {
+                    // the default function
+                    return window.location.origin + window.location.pathname;
+                }
+            });
+
+            // TODO: other types of tracking
+            Analytics.autoTrack('event', {
+                // REQUIRED, turn on/off the auto tracking
+                enable: true,
+                // OPTIONAL, events you want to track, by default is 'click'
+                events: ['click'],
+                // OPTIONAL, the prefix of the selectors, by default is 'data-amplify-analytics-'
+                // in order to avoid collision with the user agent, according to https://www.w3schools.com/tags/att_global_data.asp
+                // always put 'data' as the first prefix
+                selectorPrefix: 'data-amplify-analytics-',
+                // OPTIONAL, the service provider, by default is the AWS Pinpoint
+                provider: 'AWSPinpoint',
+                // OPTIONAL, the default attributes of the event, you can either pass an object or a function 
+                // which allows you to define dynamic attributes
+                attributes: {
+                    attr: 'attr'
+                }
+                // when using function
+                // attributes: () => {
+                //    const attr = somewhere();
+                //    return {
+                //        myAttr: attr
+                //    }
+                // }
+            });
+
+        })
+
+
+    }
+    main()
+})()
