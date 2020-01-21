@@ -1,6 +1,6 @@
-# aws-web-analytics
+# AWS Web Analytics
 
-Tracking tag library for AWS Pinpoint as an alternative to Google Analytics.
+Tracking tag library for AWS Pinpoint as an alternative to Google Analytics. [Why you need to move off Google Analytics](https://dev.to/goatandsheep/stop-donating-your-customers-data-to-google-analytics-191)
 
 ## Initialize your account
 
