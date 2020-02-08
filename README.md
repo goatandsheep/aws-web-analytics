@@ -4,7 +4,7 @@ Tracking tag library for AWS Pinpoint as an alternative to Google Analytics.
 
 ## Philosophy
 
-Please see [Why you need to move off Google Analytics](https://dev.to/goatandsheep/stop-donating-your-customers-data-to-google-analytics-191)
+Moving to AWS from Google Analytics is a way to maintain your users' privacy. Our blog post, [Why you need to move off Google Analytics](https://dev.to/goatandsheep/stop-donating-your-customers-data-to-google-analytics-191), explains more about it.
 
 ## Initialize your account
 
