@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "lib": ["es2017", "dom"],
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+      "experimentalDecorators": true,
+      "removeComments": true,
+      "outDir": "deploy"
+    },
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+    ]
+  }
+  
