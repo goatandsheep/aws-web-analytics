@@ -20,7 +20,7 @@
   "homepage": "https://github.com/goatandsheep/aws-web-analytics#readme",
   "dependencies": {
     "@aws-amplify/analytics": "^3.2.5",
-    "@aws-amplify/auth": "^3.3.3",
+    "@aws-amplify/auth": "^3.4.4",
     "@aws-amplify/core": "^3.4.4"
   },
   "devDependencies": {
