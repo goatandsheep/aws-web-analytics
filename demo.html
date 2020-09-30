@@ -7,7 +7,14 @@
     <title>AWS Web Analytics Example</title>
   </head>
   <body>
-    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" autoplay controls></video>
+    <video
+      autoplay
+      controls
+      data-aws-analytics-on="click"
+      data-aws-analytics-name="video-click"
+      data-aws-analytics-attrs='attr1:attr1_value,attr2:attr2_value'
+      src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+    ></video>
 
     <script
       type="text/javascript"
