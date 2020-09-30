@@ -13,8 +13,9 @@ import AmplifyConfig from './AmplifyConfig'
 
         const pageType = document.location.hash ? 'SPA' : 'multiPageApp'
 
-        window.LOG_LEVEL='DEBUG'
-
+        if (process.env.NODE_ENV !== 'production') {
+            window.LOG_LEVEL='DEBUG'
+        }
 
         var utm_source = 'utm_source'
         var utm_medium = 'utm_medium'
@@ -60,7 +61,6 @@ import AmplifyConfig from './AmplifyConfig'
                 }
             });
 
-            // TODO: other types of tracking
             Analytics.autoTrack('event', {
                 // REQUIRED, turn on/off the auto tracking
                 enable: true,
@@ -69,7 +69,7 @@ import AmplifyConfig from './AmplifyConfig'
                 // OPTIONAL, the prefix of the selectors, by default is 'data-amplify-analytics-'
                 // in order to avoid collision with the user agent, according to https://www.w3schools.com/tags/att_global_data.asp
                 // always put 'data' as the first prefix
-                selectorPrefix: 'data-amplify-analytics-',
+                selectorPrefix: 'data-aws-analytics-',
                 // OPTIONAL, the service provider, by default is the AWS Pinpoint
                 provider: 'AWSPinpoint',
                 // OPTIONAL, the default attributes of the event, you can either pass an object or a function 
