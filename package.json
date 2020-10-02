@@ -21,7 +21,7 @@
   "dependencies": {
     "@aws-amplify/analytics": "^3.3.5",
     "@aws-amplify/auth": "^3.4.5",
-    "@aws-amplify/core": "^3.5.5"
+    "@aws-amplify/core": "^3.6.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
