@@ -1,6 +1,6 @@
 {
   "name": "aws-web-analytics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Inexpensive alternative to Google Analytics on AWS",
   "main": "./dist/index.js",
   "scripts": {
