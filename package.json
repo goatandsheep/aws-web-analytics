@@ -1,8 +1,8 @@
 {
   "name": "aws-web-analytics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inexpensive alternative to Google Analytics on AWS",
-  "main": "./dist/index.js",
+  "main": "./dist/aws-web-analytics.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack",
     "dev": "./node_modules/.bin/webpack-dev-server",
