@@ -1,3 +1,5 @@
+> AWS Pinpoint has been deprecated so this solution no longer is valid.
+
 # AWS Web Analytics
 
 Tracking tag library for AWS Pinpoint as an alternative to Google Analytics using AWS Amplify. 
